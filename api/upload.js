@@ -26,13 +26,13 @@ handler.use((req, res, next) => {
       return res.status(400).json({ error: 'File parsing error' });
     }
 
-    const file = files.images;
-    if (!file || !file.filepath) {
-      console.error('[upload] File missing or invalid:', file);
-      return res.status(400).json({ error: 'File missing or invalid' });
-    }
+    const file = Array.isArray(files.images) ? files.images[0] : files.images;
 
-    req.uploadFilePath = file.filepath;
+if (!file || !file.filepath) {
+  console.error('[upload] File missing or invalid:', file);
+  return res.status(400).json({ error: 'File missing or invalid' });
+}
+req.uploadFilePath = file.filepath;
     next();
   });
 });
