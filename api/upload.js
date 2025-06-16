@@ -32,14 +32,21 @@ handler.post(async (req, res) => {
     const formData = new FormData();
     formData.append('file', fs.createReadStream(file.filepath));
 
+    console.log('[upload] Sending to telegra.ph...');
+
     const response = await axios.post('https://telegra.ph/upload', formData, {
-      headers: formData.getHeaders(),
+      headers: {
+        ...formData.getHeaders(),
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/90.0.0.0 Safari/537.36'
+      }
     });
 
-    const src = response.data[0]?.src;
-    if (!src) throw new Error('Invalid response from telegra.ph');
+    console.log('[upload] telegra.ph status:', response.status);
+    console.log('[upload] telegra.ph data:', response.data);
 
-    console.log('[upload] Success:', src);
+    const src = response.data[0]?.src;
+    if (!src) throw new Error('No src returned from telegra.ph');
+
     res.status(200).json({ url: 'https://telegra.ph' + src });
   } catch (e) {
     console.error('[upload] Upload failed:', e.message);
