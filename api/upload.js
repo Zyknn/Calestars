@@ -12,7 +12,7 @@ export const config = {
 
 const handler = nextConnect();
 
-// Handle multipart/form-data with formidable
+// Middleware: parse multipart form data
 handler.use((req, res, next) => {
   const form = formidable({
     keepExtensions: true,
@@ -28,28 +28,30 @@ handler.use((req, res, next) => {
 
     const file = Array.isArray(files.images) ? files.images[0] : files.images;
 
-if (!file || !file.filepath) {
-  console.error('[upload] File missing or invalid:', file);
-  return res.status(400).json({ error: 'File missing or invalid' });
-}
-req.uploadFilePath = file.filepath;
+    if (!file || !file.filepath) {
+      console.error('[upload] File missing or invalid:', file);
+      return res.status(400).json({ error: 'File missing or invalid' });
+    }
+
+    req.uploadFilePath = file.filepath;
     next();
   });
 });
 
-// POST handler to upload to telegra.ph
+// POST handler
 handler.post(async (req, res) => {
   try {
     const formData = new FormData();
-    formData.append('file', fs.createReadStream(req.uploadFilePath));
+    formData.append('file', fs.createReadStream(req.uploadFilePath)); // ✅ field harus 'file'
 
     console.log('[upload] Sending to telegra.ph...');
 
     const response = await axios.post('https://telegra.ph/upload', formData, {
       headers: {
         ...formData.getHeaders(),
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/90.0.0.0 Safari/537.36'
-      }
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/90.0.0.0 Safari/537.36',
+      },
     });
 
     console.log('[upload] telegra.ph status:', response.status);
