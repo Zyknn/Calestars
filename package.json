@@ -1,0 +1,11 @@
+{
+  "name": "telegraph-uploader",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "form-data": "^4.0.0",
+    "formidable": "^3.5.0",
+    "next-connect": "^0.13.4"
+  }
+}
