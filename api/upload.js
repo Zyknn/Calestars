@@ -12,25 +12,36 @@ export const config = {
 
 const handler = nextConnect();
 
+// Handle multipart/form-data with formidable
 handler.use((req, res, next) => {
-  const form = formidable({ maxFileSize: 5 * 1024 * 1024 });
+  const form = formidable({
+    keepExtensions: true,
+    multiples: false,
+    maxFileSize: 5 * 1024 * 1024, // 5MB
+  });
 
   form.parse(req, (err, fields, files) => {
     if (err) {
       console.error('[upload] Formidable error:', err);
       return res.status(400).json({ error: 'File parsing error' });
     }
-    req.body = fields;
-    req.files = files;
+
+    const file = files.images;
+    if (!file || !file.filepath) {
+      console.error('[upload] File missing or invalid:', file);
+      return res.status(400).json({ error: 'File missing or invalid' });
+    }
+
+    req.uploadFilePath = file.filepath;
     next();
   });
 });
 
+// POST handler to upload to telegra.ph
 handler.post(async (req, res) => {
   try {
-    const file = req.files.images;
     const formData = new FormData();
-    formData.append('file', fs.createReadStream(file.filepath));
+    formData.append('file', fs.createReadStream(req.uploadFilePath));
 
     console.log('[upload] Sending to telegra.ph...');
 
