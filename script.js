@@ -27,18 +27,6 @@ const groups = [
     buttonIcon: "fa-comment-dots"
   },
   {
-  title: "Telegram Bot (FREE) ✨",
-  header: "Calestia Now on Telegram",
-  description:
-    "Explore a new side of Calestia! This is the official Telegram version of your favorite WhatsApp bot—same love, new platform and its features are free.",
-  image: "https://files.catbox.moe/22zz0w.jpg",
-  url: "https://t.me/ClstiaBot",
-  icon: "fa-paper-plane",
-  color: "bg-cyan-500",
-  buttonText: "Talk on Telegram",
-  buttonIcon: "fa-robot"
-  },
-  {
     title: "Official Group 🌟",
     header: "Join Our Official Community",
     description:
