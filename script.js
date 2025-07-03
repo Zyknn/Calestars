@@ -216,7 +216,7 @@ window.toggleGroupDetail = toggleGroupDetail;
 /**
  * Music Player Logic
  */
-const audio = new Audio("https://files.catbox.moe/rrwrw6.mp3 "); // Ganti dengan URL musikmu
+const audio = new Audio("https://files.catbox.moe/t7kv3j.mp3"); // Ganti dengan URL musikmu
 const playBtn = document.getElementById("play-pause-btn");
 const playIcon = document.getElementById("play-icon");
 const pauseIcon = document.getElementById("pause-icon");
