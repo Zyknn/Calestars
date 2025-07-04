@@ -400,19 +400,17 @@ function updateLyrics() {
     });
 
     if (activeItem && container) {
-      const itemTop = activeItem.offsetTop;
-      const itemBottom = itemTop + activeItem.offsetHeight;
-      const containerTop = container.scrollTop;
+      // Hitung posisi relatif item terhadap container
+      const itemOffsetTop = activeItem.offsetTop;
+      const itemOffsetBottom = itemOffsetTop + activeItem.offsetHeight;
+      const containerScrollTop = container.scrollTop;
       const containerHeight = container.clientHeight;
-      const containerBottom = containerTop + containerHeight;
 
-      // Scroll hanya kalau baris aktif tidak terlihat
-      if (itemTop < containerTop || itemBottom > containerBottom) {
-        const targetScroll = itemTop - containerHeight * 0.3;
-        container.scrollTo({
-          top: targetScroll,
-          behavior: "smooth"
-        });
+      // Cek jika item di luar viewport container
+      if (itemOffsetTop < containerScrollTop) {
+        container.scrollTop = itemOffsetTop - 10; // scroll ke atas item
+      } else if (itemOffsetBottom > containerScrollTop + containerHeight) {
+        container.scrollTop = itemOffsetBottom - containerHeight + 10; // scroll ke bawah item
       }
     }
 
@@ -421,7 +419,6 @@ function updateLyrics() {
 }
 
 
-setInterval(updateLyrics, 200)
 loadLyrics()
 
 /**
