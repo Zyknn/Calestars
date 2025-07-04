@@ -417,7 +417,7 @@ function updateLyrics() {
 }
 
 
-setInterval(updateLyrics, 100);
+setInterval(updateLyrics, 1);
 loadLyrics()
 
 /**
