@@ -19,7 +19,7 @@ const groups = [
     header: "Reach Your Favorite Bot",
     description:
       "The easiest way to reach your favorite bot! Start chatting and let the magic begin.",
-    image: "https://files.catbox.moe/7sgzsu.jpg   ",
+    image: "https://nauval.cloud/download/soo.jpg   ",
     url: "https://wa.me/6282133532380   ",
     icon: "fa-phone",
     color: "bg-pink-500",
@@ -31,7 +31,7 @@ const groups = [
     header: "Join Our Official Community",
     description:
       "Join the official group where all Calestars unite. Stay connected and be part of something amazing!",
-    image: "https://files.catbox.moe/wwfco3.png   ",
+    image: "https://nauval.cloud/download/cales.jpg   ",
     url: "https://chat.whatsapp.com/HDockZJ48S82HUhsxu85kH   ",
     icon: "fa-users",
     color: "bg-purple-500",
@@ -43,8 +43,8 @@ const groups = [
     header: "Stay Updated with Us",
     description:
       "Stay updated with all the latest news and announcements in our official channel. No distractions, just the essentials!",
-    image: "https://files.catbox.moe/u4d541.jpg   ",
-    url: "https://whatsapp.com/channel/0029VapSsRCGJP8CHvDLT11f   ",
+    image: "https://nauval.cloud/download/wa.jpg   ",
+    url: "https://whatsapp.com/channel/0029VapSsRCGJP8CHvDLT11f",
     icon: "fa-bullhorn",
     color: "bg-blue-500",
     buttonText: "Follow to Channel",
