@@ -403,11 +403,16 @@ function updateLyrics() {
       const itemTop = activeItem.offsetTop;
       const itemBottom = itemTop + activeItem.offsetHeight;
       const containerTop = container.scrollTop;
-      const containerBottom = containerTop + container.clientHeight;
+      const containerHeight = container.clientHeight;
+      const containerBottom = containerTop + containerHeight;
 
-      // Scroll hanya kalau di luar area tampilan
+      // Scroll hanya kalau baris aktif tidak terlihat
       if (itemTop < containerTop || itemBottom > containerBottom) {
-        activeItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        const targetScroll = itemTop - containerHeight * 0.3;
+        container.scrollTo({
+          top: targetScroll,
+          behavior: "smooth"
+        });
       }
     }
 
@@ -415,7 +420,8 @@ function updateLyrics() {
   }
 }
 
-setInterval(updateLyrics, 500)
+
+setInterval(updateLyrics, 200)
 loadLyrics()
 
 /**
