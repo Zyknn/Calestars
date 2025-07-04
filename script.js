@@ -348,9 +348,8 @@ window.addEventListener("beforeunload", () => {
 
 let lyrics = []
 
-// Load dan parse file lyrics.lrc lokal
 async function loadLyrics() {
-  const res = await fetch('style.lrc') // pastikan file ini ada di root folder
+  const res = await fetch('style.lrc') 
   const text = await res.text()
 
   lyrics = []
@@ -378,22 +377,33 @@ async function loadLyrics() {
 }
 
 // Update tampilan lirik berdasarkan waktu audio
+let lastActiveIndex = -1;
+
 function updateLyrics() {
-  if (!lyrics.length) return
-  const time = audio.currentTime
-  let activeIndex = 0
+  if (!lyrics.length) return;
+
+  const time = audio.currentTime;
+  let activeIndex = 0;
+
   for (let i = 0; i < lyrics.length; i++) {
-    if (time >= lyrics[i].time) activeIndex = i
-    else break
+    if (time >= lyrics[i].time) activeIndex = i;
+    else break;
   }
 
-  const items = document.querySelectorAll("#lyrics-list li")
-  items.forEach((item, i) => {
-    item.classList.toggle("active-lyric", i === activeIndex)
-    if (i === activeIndex) {
-      item.scrollIntoView({ behavior: "smooth", block: "center" })
+  if (activeIndex !== lastActiveIndex) {
+    const items = document.querySelectorAll("#lyrics-list li");
+    items.forEach((item, i) => {
+      item.classList.toggle("active-lyric", i === activeIndex);
+    });
+
+    // Hanya scroll saat berubah
+    const activeItem = items[activeIndex];
+    if (activeItem) {
+      activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  })
+
+    lastActiveIndex = activeIndex;
+  }
 }
 
 setInterval(updateLyrics, 500)
