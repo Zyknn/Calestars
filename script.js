@@ -396,18 +396,23 @@ function updateLyrics() {
       item.classList.toggle("active-lyric", i === activeIndex);
     });
 
-    // Scroll internal ke baris aktif
     const activeItem = items[activeIndex];
-    const lyricsContainer = document.getElementById("lyrics-container");
+    const container = document.getElementById("lyrics-container");
 
-    if (activeItem && lyricsContainer) {
-      const containerTop = lyricsContainer.scrollTop;
-      const containerHeight = lyricsContainer.clientHeight;
+    if (activeItem && container) {
       const itemTop = activeItem.offsetTop;
-      const itemHeight = activeItem.offsetHeight;
+      const itemBottom = itemTop + activeItem.offsetHeight;
+      const containerScrollTop = container.scrollTop;
+      const containerHeight = container.clientHeight;
 
-      const scrollTo = itemTop - containerHeight / 2 + itemHeight / 2;
-      lyricsContainer.scrollTo({ top: scrollTo, behavior: "smooth" });
+      // Jika lirik aktif berada DI LUAR area terlihat (atas atau bawah)
+      if (itemTop < containerScrollTop || itemBottom > containerScrollTop + containerHeight) {
+        // Scroll sedikit, biar smooth
+        container.scrollTo({
+          top: itemTop - containerHeight / 4,
+          behavior: "smooth"
+        });
+      }
     }
 
     lastActiveIndex = activeIndex;
