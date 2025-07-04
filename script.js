@@ -346,10 +346,12 @@ window.addEventListener("beforeunload", () => {
   audio.pause();
 });
 
+
+// Update tampilan lirik berdasarkan waktu audio
 let lyrics = []
 
 async function loadLyrics() {
-  const res = await fetch('style.lrc')
+  const res = await fetch('style.lrc') 
   const text = await res.text()
 
   lyrics = []
@@ -359,8 +361,8 @@ async function loadLyrics() {
     for (let match of matches) {
       const min = parseInt(match[1])
       const sec = parseInt(match[2])
-      const ms = match[3] ? match[3].padEnd(3, '0') : '000'
-      const time = min * 60 + sec + parseInt(ms) / 1000
+      const ms = parseInt(match[3] || '0')
+      const time = min * 60 + sec + ms / 1000
       const text = match[4].trim()
       if (text) lyrics.push({ time, text })
     }
@@ -376,17 +378,15 @@ async function loadLyrics() {
   }
 }
 
-
 // Update tampilan lirik berdasarkan waktu audio
 let lastActiveIndex = -1;
-const delayOffset = 3.2;
 
 function updateLyrics() {
   if (!lyrics.length) return;
 
-  const time = audio.currentTime + delayOffset; // geser waktu audio
-
+  const time = audio.currentTime;
   let activeIndex = 0;
+
   for (let i = 0; i < lyrics.length; i++) {
     if (time >= lyrics[i].time) activeIndex = i;
     else break;
@@ -397,10 +397,12 @@ function updateLyrics() {
     const container = document.getElementById("lyrics-container");
     const activeItem = items[activeIndex];
 
+    // Update highlighting
     items.forEach((item, i) => {
       item.classList.toggle("active-lyric", i === activeIndex);
     });
 
+    // Scroll ke tengah container
     if (activeItem && container) {
       const itemOffset = activeItem.offsetTop;
       const itemHeight = activeItem.offsetHeight;
@@ -415,7 +417,6 @@ function updateLyrics() {
     lastActiveIndex = activeIndex;
   }
 }
-
 
 
 setInterval(updateLyrics, 1);
