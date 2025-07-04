@@ -395,28 +395,27 @@ function updateLyrics() {
     const container = document.getElementById("lyrics-container");
     const activeItem = items[activeIndex];
 
+    // Update highlighting
     items.forEach((item, i) => {
       item.classList.toggle("active-lyric", i === activeIndex);
     });
 
+    // Scroll ke tengah container
     if (activeItem && container) {
-      // Hitung posisi relatif item terhadap container
-      const itemOffsetTop = activeItem.offsetTop;
-      const itemOffsetBottom = itemOffsetTop + activeItem.offsetHeight;
-      const containerScrollTop = container.scrollTop;
-      const containerHeight = container.clientHeight;
+      const itemOffset = activeItem.offsetTop;
+      const itemHeight = activeItem.offsetHeight;
+      const scrollPosition = itemOffset - container.clientHeight / 2 + itemHeight / 2;
 
-      // Cek jika item di luar viewport container
-      if (itemOffsetTop < containerScrollTop) {
-        container.scrollTop = itemOffsetTop - 10; // scroll ke atas item
-      } else if (itemOffsetBottom > containerScrollTop + containerHeight) {
-        container.scrollTop = itemOffsetBottom - containerHeight + 10; // scroll ke bawah item
-      }
+      container.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth"
+      });
     }
 
     lastActiveIndex = activeIndex;
   }
 }
+
 
 setInterval(updateLyrics, 100);
 loadLyrics()
