@@ -368,56 +368,55 @@
     </div>
 
     <!-- Music Player Section -->
-    <section class="mt-12">
-      <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-        <i class="fas fa-music mr-3 text-purple-500"></i>
-        <span>Now Playing</span>
-      </h2>
+<section class="mt-12">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+    <i class="fas fa-music mr-3 text-purple-500"></i>
+    <span>Now Playing</span>
+  </h2>
 
-      <div id="music-player" class="bg-white p-4 rounded-xl shadow-md border border-gray-100 dark-mode:bg-[#2a2a40] transition-colors duration-300">
-        <div class="flex items-center space-x-4">
+  <div id="music-player" class="bg-white p-4 rounded-xl shadow-md border border-gray-100 dark-mode:bg-[#2a2a40] transition-colors duration-300">
+    
+    <!-- Baris atas: cover + info lagu + tombol -->
+    <div class="flex items-center space-x-4">
+      <!-- Album Cover -->
+      <img id="album-cover" src="https://files.catbox.moe/2gh7m9.jpg" alt="Cover"
+        class="w-16 h-16 rounded-lg object-cover shadow-sm" />
 
-          <!-- Album Cover -->
-          <img id="album-cover" src="https://files.catbox.moe/2gh7m9.jpg" alt="Cover"
-            class="w-16 h-16 rounded-lg object-cover shadow-sm" />
-
-          <!-- Song Info -->
-          <div class="flex-1 min-w-0">
-            <p id="song-title" class="font-semibold truncate text-gray-900" data-dark-text="text-white">하츠투하츠 'STYLE'</p>
-            <p id="artist-name" class="text-sm truncate text-gray-600" data-dark-text="text-gray-300">Hearts2Hearts</p>
-          </div>
-
-          <!-- Lyrics -->
-        <div id="lyrics-container" class="mt-6 h-40 overflow-y-auto text-sm text-gray-700 dark:text-gray-300 border-t pt-3">
-        <ul id="lyrics-list" class="space-y-1"></ul>
-        </div>
-
-
-          <!-- Play/Pause Button -->
-          <button id="play-pause-btn" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none">
-            <i class="fas fa-play" id="play-icon"></i>
-            <i class="fas fa-pause hidden" id="pause-icon"></i>
-          </button>
-
-        </div>
-
-        <!-- Progress Bar -->
-        <div id="progress-container" class="mt-3 relative cursor-pointer">
-          <div class="h-1 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-            <div id="progress-bar" class="h-full w-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-100"></div>
-          </div>
-          <div id="progress-pointer"
-            class="absolute top-1/2 -translate-y-1/2 left-0 w-3 h-3 rounded-full z-10 cursor-pointer border-none"
-            style="background: linear-gradient(90deg, #4361ee, #8b5cf6); width: 10px; height: 10px;"></div>
-        </div>
-
-        <!-- Time Info -->
-        <div class="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
-          <span id="current-time">0:00</span>
-          <span id="total-duration">0:00</span>
-        </div>
+      <!-- Song Info -->
+      <div class="flex-1 min-w-0">
+        <p id="song-title" class="font-semibold truncate text-gray-900" data-dark-text="text-white">하츠투하츠 'STYLE'</p>
+        <p id="artist-name" class="text-sm truncate text-gray-600" data-dark-text="text-gray-300">Hearts2Hearts</p>
       </div>
-    </section>
+
+      <!-- Play/Pause Button -->
+      <button id="play-pause-btn" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none">
+        <i class="fas fa-play" id="play-icon"></i>
+        <i class="fas fa-pause hidden" id="pause-icon"></i>
+      </button>
+    </div>
+
+    <!-- Lyrics Section (letakkan di sini, di luar "flex") -->
+    <div id="lyrics-container" class="mt-6 h-40 overflow-y-auto text-sm text-gray-700 dark:text-gray-300 border-t pt-3">
+      <ul id="lyrics-list" class="space-y-1"></ul>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-container" class="mt-3 relative cursor-pointer">
+      <div class="h-1 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+        <div id="progress-bar" class="h-full w-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-100"></div>
+      </div>
+      <div id="progress-pointer"
+        class="absolute top-1/2 -translate-y-1/2 left-0 w-3 h-3 rounded-full z-10 cursor-pointer border-none"
+        style="background: linear-gradient(90deg, #4361ee, #8b5cf6); width: 10px; height: 10px;"></div>
+    </div>
+
+    <!-- Time Info -->
+    <div class="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
+      <span id="current-time">0:00</span>
+      <span id="total-duration">0:00</span>
+    </div>
+  </div>
+</section>
 
     <!-- Groups Section -->
     <section class="mt-12">
