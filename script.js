@@ -379,13 +379,14 @@ async function loadLyrics() {
 
 // Update tampilan lirik berdasarkan waktu audio
 let lastActiveIndex = -1;
+const delayOffset = 1.5; // Geser 1.5 detik ke depan
 
 function updateLyrics() {
   if (!lyrics.length) return;
 
-  const time = audio.currentTime;
-  let activeIndex = 0;
+  const time = audio.currentTime + delayOffset; // geser waktu audio
 
+  let activeIndex = 0;
   for (let i = 0; i < lyrics.length; i++) {
     if (time >= lyrics[i].time) activeIndex = i;
     else break;
@@ -396,12 +397,10 @@ function updateLyrics() {
     const container = document.getElementById("lyrics-container");
     const activeItem = items[activeIndex];
 
-    // Update highlighting
     items.forEach((item, i) => {
       item.classList.toggle("active-lyric", i === activeIndex);
     });
 
-    // Scroll ke tengah container
     if (activeItem && container) {
       const itemOffset = activeItem.offsetTop;
       const itemHeight = activeItem.offsetHeight;
@@ -416,6 +415,7 @@ function updateLyrics() {
     lastActiveIndex = activeIndex;
   }
 }
+
 
 
 setInterval(updateLyrics, 1);
