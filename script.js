@@ -396,10 +396,18 @@ function updateLyrics() {
       item.classList.toggle("active-lyric", i === activeIndex);
     });
 
-    // Hanya scroll saat berubah
+    // Scroll internal ke baris aktif
     const activeItem = items[activeIndex];
-    if (activeItem) {
-      activeItem.scrollIntoView({ behavior: "smooth", block: "center" });
+    const lyricsContainer = document.getElementById("lyrics-container");
+
+    if (activeItem && lyricsContainer) {
+      const containerTop = lyricsContainer.scrollTop;
+      const containerHeight = lyricsContainer.clientHeight;
+      const itemTop = activeItem.offsetTop;
+      const itemHeight = activeItem.offsetHeight;
+
+      const scrollTo = itemTop - containerHeight / 2 + itemHeight / 2;
+      lyricsContainer.scrollTo({ top: scrollTo, behavior: "smooth" });
     }
 
     lastActiveIndex = activeIndex;
