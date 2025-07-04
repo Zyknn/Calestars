@@ -392,26 +392,22 @@ function updateLyrics() {
 
   if (activeIndex !== lastActiveIndex) {
     const items = document.querySelectorAll("#lyrics-list li");
+    const container = document.getElementById("lyrics-container");
+    const activeItem = items[activeIndex];
+
     items.forEach((item, i) => {
       item.classList.toggle("active-lyric", i === activeIndex);
     });
 
-    const activeItem = items[activeIndex];
-    const container = document.getElementById("lyrics-container");
-
     if (activeItem && container) {
       const itemTop = activeItem.offsetTop;
       const itemBottom = itemTop + activeItem.offsetHeight;
-      const containerScrollTop = container.scrollTop;
-      const containerHeight = container.clientHeight;
+      const containerTop = container.scrollTop;
+      const containerBottom = containerTop + container.clientHeight;
 
-      // Jika lirik aktif berada DI LUAR area terlihat (atas atau bawah)
-      if (itemTop < containerScrollTop || itemBottom > containerScrollTop + containerHeight) {
-        // Scroll sedikit, biar smooth
-        container.scrollTo({
-          top: itemTop - containerHeight / 4,
-          behavior: "smooth"
-        });
+      // Scroll hanya kalau di luar area tampilan
+      if (itemTop < containerTop || itemBottom > containerBottom) {
+        activeItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
     }
 
