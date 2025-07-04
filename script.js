@@ -391,6 +391,58 @@ if (toggleBtn) {
   }
 }
 
+let lyrics = []
+
+async function loadLyrics() {
+  const res = await fetch('style.lrc')
+  const text = await res.text()
+
+  lyrics = []
+  const lines = text.split('\n')
+  for (let line of lines) {
+    const matches = [...line.matchAll(/\[(\d+):(\d+)(?:\.(\d+))?\](.*)/g)]
+    for (let match of matches) {
+      const min = parseInt(match[1])
+      const sec = parseInt(match[2])
+      const ms = parseInt(match[3] || '0')
+      const time = min * 60 + sec + ms / 1000
+      const text = match[4].trim()
+      if (text) lyrics.push({ time, text })
+    }
+  }
+
+  // Masukkan lirik ke HTML
+  const lyricsList = document.getElementById("lyrics-list")
+  lyricsList.innerHTML = ''
+  for (let line of lyrics) {
+    const li = document.createElement("li")
+    li.textContent = line.text
+    lyricsList.appendChild(li)
+  }
+}
+
+// Update tampilan lirik berdasarkan waktu audio
+function updateLyrics() {
+  if (!lyrics.length) return
+  const time = audio.currentTime
+  let activeIndex = 0
+  for (let i = 0; i < lyrics.length; i++) {
+    if (time >= lyrics[i].time) activeIndex = i
+    else break
+  }
+
+  const items = document.querySelectorAll("#lyrics-list li")
+  items.forEach((item, i) => {
+    item.classList.toggle("active-lyric", i === activeIndex)
+    if (i === activeIndex) {
+      item.scrollIntoView({ behavior: "smooth", block: "center" })
+    }
+  })
+}
+
+setInterval(updateLyrics, 500)
+loadLyrics()
+
 /**
  * Update warna teks sesuai mode gelap/terang
  */
