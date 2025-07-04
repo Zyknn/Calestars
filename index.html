@@ -402,7 +402,7 @@
     </div>
 
     <!-- Lyrics Section (letakkan di sini, di luar "flex") -->
-    <div id="lyrics-container" class="mt-4 h-40 overflow-y-auto text-sm text-gray-700 dark:text-gray-300 border-t pt-3">
+    <div id="lyrics-container" class="mt-4 h-40 overflow-y-auto text-sm text-gray-700 dark:text-gray-200 border-t border-gray-200 dark:border-gray-600 pt-3 transition-colors">
       <ul id="lyrics-list" class="space-y-1"></ul>
     </div>
 
@@ -450,10 +450,11 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
     <!-- Free Plan -->
-    <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm">
-      <h3 class="text-lg font-semibold text-center text-gray-600 mb-4">🕊️ Free</h3>
-      <ul class="space-y-2 text-sm">
-        <li class="flex justify-between text-gray-700">
+   <!-- Free Plan -->
+<div class="bg-gray-50 dark:bg-[#2a2a40] border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm transition-colors">
+  <h3 class="text-lg font-semibold text-center text-gray-600 dark:text-gray-200 mb-4">🕊️ Free</h3>
+  <ul class="space-y-2 text-sm">
+    <li class="flex justify-between text-gray-700 dark:text-gray-100">
           Limit Pesan ( Harian )
           <span class="flex items-center gap-1">20</span>
         </li>
@@ -485,9 +486,10 @@
     </div>
 
     <!-- Premium Plan -->
-    <div class="bg-gradient-to-br from-purple-100 to-indigo-100 border border-indigo-300 rounded-xl p-5 shadow-sm">
-      <h3 class="text-lg font-semibold text-center text-indigo-800 mb-4">✨ Premium</h3>
-      <ul class="space-y-2 text-sm text-indigo-900">
+   <!-- Premium Plan -->
+<div class="bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-[#3b2d63] dark:to-[#2e2a6b] border border-indigo-300 dark:border-indigo-700 rounded-xl p-5 shadow-sm transition-colors">
+  <h3 class="text-lg font-semibold text-center text-indigo-800 dark:text-indigo-200 mb-4">✨ Premium</h3>
+  <ul class="space-y-2 text-sm text-indigo-900 dark:text-gray-100">
         <li class="flex justify-between">
           Limit Pesan
           <span class="flex items-center gap-1">2000 - 4000</span>
