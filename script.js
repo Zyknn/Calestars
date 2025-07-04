@@ -349,7 +349,7 @@ window.addEventListener("beforeunload", () => {
 let lyrics = []
 
 async function loadLyrics() {
-  const res = await fetch('style.lrc') 
+  const res = await fetch('style.lrc')
   const text = await res.text()
 
   lyrics = []
@@ -359,8 +359,8 @@ async function loadLyrics() {
     for (let match of matches) {
       const min = parseInt(match[1])
       const sec = parseInt(match[2])
-      const ms = parseInt(match[3] || '0')
-      const time = min * 60 + sec + ms / 1000
+      const ms = match[3] ? match[3].padEnd(3, '0') : '000'
+      const time = min * 60 + sec + parseInt(ms) / 1000
       const text = match[4].trim()
       if (text) lyrics.push({ time, text })
     }
@@ -375,6 +375,7 @@ async function loadLyrics() {
     lyricsList.appendChild(li)
   }
 }
+
 
 // Update tampilan lirik berdasarkan waktu audio
 let lastActiveIndex = -1;
