@@ -379,7 +379,7 @@ async function loadLyrics() {
 
 // Update tampilan lirik berdasarkan waktu audio
 let lastActiveIndex = -1;
-const delayOffset = 1.2; // Geser 1.5 detik ke depan
+const delayOffset = -0.8;
 
 function updateLyrics() {
   if (!lyrics.length) return;
