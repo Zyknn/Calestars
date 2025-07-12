@@ -593,20 +593,22 @@ document.addEventListener("DOMContentLoaded", () => {
     void container.offsetWidth;
 
     const textWidth = container.offsetWidth;
-    const duration = (textWidth + wrapperWidth) / 60 * 1000;
+    const speed = 90; // px per detik (lebih cepat dari sebelumnya)
+    const duration = (textWidth + wrapperWidth) / speed * 1000;
 
     container.style.transition = `left ${duration}ms linear`;
     container.style.left = `-${textWidth}px`;
 
+    // ganti sebelum habis (80% dari total durasi)
+    const gantiLebihCepat = duration * 0.8;
     setTimeout(() => {
       index = (index + 1) % messages.length;
       showMessage(messages[index]);
-    }, duration);
+    }, gantiLebihCepat);
   }
 
   showMessage(messages[index]);
 });
-
 /**
  * Inisialisasi plan selector
  */
