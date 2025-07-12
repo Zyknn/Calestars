@@ -213,42 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.toggleGroupDetail = toggleGroupDetail;
 
-const messages = [
-  "💌 Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💫",
-  "🌙 Bot saat ini hanya aktif di grup. Mau chat pribadi? Bisa dengan akun premium ✨",
-  "🌸 Nama akun yang kosong atau aneh tidak bisa masuk grup. Biar kami bisa mengenalmu lebih baik 🍃"
-];
-
-let index = 0;
-const container = document.getElementById("info-container");
-const wrapperWidth = document.querySelector(".w-full").offsetWidth;
-
-function showMessage(text) {
-  container.innerText = text;
-  container.style.transition = "none";
-  container.style.left = `${wrapperWidth}px`;
-  container.style.opacity = 1;
-
-  // force reflow
-  void container.offsetWidth;
-
-  // hitung durasi berdasarkan panjang teks
-  const textWidth = container.offsetWidth;
-  const duration = (textWidth + wrapperWidth) / 60 * 1000; // 60px/s
-
-  container.style.transition = `left ${duration}ms linear`;
-  container.style.left = `-${textWidth}px`;
-
-  // langsung ganti setelah animasi selesai (tanpa jeda)
-  setTimeout(() => {
-    index = (index + 1) % messages.length;
-    showMessage(messages[index]);
-  }, duration);
-}
-
-// mulai pertama kali
-showMessage(messages[index]);
-
   const text = "Hey, Calestars!";
   const element = document.getElementById("typing-text");
   let index = 0;
@@ -607,6 +571,40 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     initGroups();
   }, 100);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const messages = [
+    "💌 Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💫",
+    "🌙 Bot saat ini hanya aktif di grup. Mau chat pribadi? Bisa dengan akun premium ✨",
+    "🌸 Nama akun yang kosong atau aneh tidak bisa masuk grup. Biar kami bisa mengenalmu lebih baik 🍃"
+  ];
+
+  let index = 0;
+  const container = document.getElementById("info-container");
+  const wrapperWidth = document.querySelector(".w-full").offsetWidth;
+
+  function showMessage(text) {
+    container.innerText = text;
+    container.style.transition = "none";
+    container.style.left = `${wrapperWidth}px`;
+    container.style.opacity = 1;
+
+    void container.offsetWidth;
+
+    const textWidth = container.offsetWidth;
+    const duration = (textWidth + wrapperWidth) / 60 * 1000;
+
+    container.style.transition = `left ${duration}ms linear`;
+    container.style.left = `-${textWidth}px`;
+
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      showMessage(messages[index]);
+    }, duration);
+  }
+
+  showMessage(messages[index]);
 });
 
 /**
