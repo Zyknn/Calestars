@@ -593,18 +593,15 @@ document.addEventListener("DOMContentLoaded", () => {
     void container.offsetWidth;
 
     const textWidth = container.offsetWidth;
-    const speed = 90; // px per detik (lebih cepat dari sebelumnya)
-    const duration = (textWidth + wrapperWidth) / speed * 1000;
+    const duration = (textWidth + wrapperWidth) / 90 * 1000;
 
     container.style.transition = `left ${duration}ms linear`;
     container.style.left = `-${textWidth}px`;
 
-    // ganti sebelum habis (80% dari total durasi)
-    const gantiLebihCepat = duration * 0.8;
     setTimeout(() => {
       index = (index + 1) % messages.length;
       showMessage(messages[index]);
-    }, gantiLebihCepat);
+    }, duration);
   }
 
   showMessage(messages[index]);
