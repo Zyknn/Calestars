@@ -213,6 +213,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.toggleGroupDetail = toggleGroupDetail;
 
+  const text = "Hey, Calestars!";
+  const element = document.getElementById("typing-text");
+  let index = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    if (!isDeleting) {
+      element.textContent = text.slice(0, index++);
+      if (index > text.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1500); // delay sebelum hapus
+        return;
+      }
+    } else {
+      element.textContent = text.slice(0, --index);
+      if (index === 0) {
+        isDeleting = false;
+      }
+    }
+    setTimeout(typeEffect, isDeleting ? 50 : 120);
+  }
+
+  // Mulai saat konten siap
+  document.addEventListener("DOMContentLoaded", typeEffect);
+
 /**
  * Music Player Logic
  */
