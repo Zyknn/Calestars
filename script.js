@@ -575,9 +575,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
-    "💌 Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💫",
-    "🌙 Bot saat ini hanya aktif di grup. Mau chat pribadi? Bisa dengan akun premium ✨",
-    "🌸 Nama akun yang kosong atau aneh tidak bisa masuk grup. Biar kami bisa mengenalmu lebih baik 🍃"
+    "Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💌",
+    "Bot saat ini hanya aktif di grup. Mau chat pribadi? Bisa dengan akun premium ✨",
+    "Username akun yang kosong atau aneh tidak bisa masuk grup. Biar kami bisa mengenalmu lebih baik 💖"
   ];
 
   let index = 0;
