@@ -213,6 +213,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.toggleGroupDetail = toggleGroupDetail;
 
+const messages = [
+  "💌 Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💫",
+  "🌙 Bot saat ini hanya aktif di grup. Mau chat pribadi? Bisa dengan akun premium ✨",
+  "🌸 Nama akun yang kosong atau aneh tidak bisa masuk grup. Biar kami bisa mengenalmu lebih baik 🍃"
+];
+
+let index = 0;
+const container = document.getElementById("info-container");
+const wrapperWidth = document.querySelector(".w-full").offsetWidth;
+
+function showMessage(text) {
+  container.innerText = text;
+  container.style.transition = "none";
+  container.style.left = `${wrapperWidth}px`;
+
+  // force reflow
+  void container.offsetWidth;
+
+  // mulai animasi ke kiri
+  const textWidth = container.offsetWidth;
+  const duration = (textWidth + wrapperWidth) / 60 * 1000; // 60px/s
+
+  container.style.transition = `left ${duration}ms linear`;
+  container.style.left = `-${textWidth}px`;
+
+  // setelah animasi selesai + jeda baca
+  setTimeout(() => {
+    container.style.transition = "opacity 0.5s ease";
+    container.style.opacity = 0;
+
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      showMessage(messages[index]);
+      container.style.opacity = 1;
+    }, 500); // tunggu fade out
+  }, duration + 3000); // animasi selesai + jeda 3s
+}
+
+// mulai
+showMessage(messages[index]);
+
   const text = "Hey, Calestars!";
   const element = document.getElementById("typing-text");
   let index = 0;
