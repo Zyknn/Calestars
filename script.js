@@ -238,60 +238,63 @@ window.toggleGroupDetail = toggleGroupDetail;
   // Mulai saat konten siap
   document.addEventListener("DOMContentLoaded", typeEffect);
 
-  function animateCount(elementId, finalValue = 3000, duration = 1500) {
+  function animateCount(elementId, finalValue = 3000, cycleDuration = 2000, pauseAfterFinal = 4000) {
     const el = document.getElementById(elementId);
-    let current = 0;
-    let lastValue = finalValue;
-    
+
     function randomize() {
       const startTime = performance.now();
+      let animationFrame;
 
       function update(currentTime) {
         const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const value = Math.floor(Math.random() * finalValue);
-        
+        const progress = Math.min(elapsed / cycleDuration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 2); // ease-out
+        const value = Math.floor(Math.random() * finalValue * (1 - easedProgress)) + finalValue * easedProgress;
+
+        el.textContent = Math.floor(value).toLocaleString();
+
         if (progress < 1) {
-          el.textContent = value.toLocaleString();
-          requestAnimationFrame(update);
+          animationFrame = requestAnimationFrame(update);
         } else {
           el.textContent = finalValue.toLocaleString();
-          setTimeout(randomize, 4000); // tunggu 4 detik sebelum ulang
+          setTimeout(randomize, pauseAfterFinal); // tunggu sebelum ulang
         }
       }
 
-      requestAnimationFrame(update);
+      animationFrame = requestAnimationFrame(update);
     }
 
     randomize();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    animateCount("user-count", 3000);
+    animateCount("user-count", 3000, 2500, 5000); // 2.5s acak, 5s stabil
   });
 
   const phrases = [
-    "Always With You",
-    "Forever in Our Orbit",
-    "Wrapped in Starlight",
-    "Connected by Constellations",
-    "Together, Across the Stars",
-    "In the Glow of Your Presence"
-  ];
+  "Always With You",
+  "Under The Stars",
+  "Forever Feels Short",
+  "Glowing Beside You",
+  "Orbiting Your Light",
+  "Starlit With You",
+  "In Every Galaxy",
+  "Warmed By Us"
+];
 
-  function cyclePhrases(elementId, phraseList, delay = 4000) {
-    const el = document.getElementById(elementId);
-    let index = 0;
+  function cyclePhrases(elementId, phraseList, delay = 5000) {
+  const el = document.getElementById(elementId);
+  let index = 0;
 
-    setInterval(() => {
-      index = (index + 1) % phraseList.length;
-      el.textContent = phraseList[index];
-    }, delay);
-  }
+  setInterval(() => {
+    index = (index + 1) % phraseList.length;
+    el.textContent = phraseList[index];
+  }, delay);
+}
 
-  document.addEventListener("DOMContentLoaded", () => {
-    cyclePhrases("romantic-phrase", phrases, 5000);
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  cyclePhrases("romantic-phrase", phrases, 5000);
+});
 
 /**
  * Music Player Logic
