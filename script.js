@@ -238,6 +238,61 @@ window.toggleGroupDetail = toggleGroupDetail;
   // Mulai saat konten siap
   document.addEventListener("DOMContentLoaded", typeEffect);
 
+  function animateCount(elementId, finalValue = 3000, duration = 1500) {
+    const el = document.getElementById(elementId);
+    let current = 0;
+    let lastValue = finalValue;
+    
+    function randomize() {
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(Math.random() * finalValue);
+        
+        if (progress < 1) {
+          el.textContent = value.toLocaleString();
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = finalValue.toLocaleString();
+          setTimeout(randomize, 4000); // tunggu 4 detik sebelum ulang
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    randomize();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateCount("user-count", 3000);
+  });
+
+  const phrases = [
+    "Always With You",
+    "Forever in Our Orbit",
+    "Wrapped in Starlight",
+    "Connected by Constellations",
+    "Together, Across the Stars",
+    "In the Glow of Your Presence"
+  ];
+
+  function cyclePhrases(elementId, phraseList, delay = 4000) {
+    const el = document.getElementById(elementId);
+    let index = 0;
+
+    setInterval(() => {
+      index = (index + 1) % phraseList.length;
+      el.textContent = phraseList[index];
+    }, delay);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    cyclePhrases("romantic-phrase", phrases, 5000);
+  });
+
 /**
  * Music Player Logic
  */
