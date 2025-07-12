@@ -155,7 +155,17 @@
       flex-direction: column;
       align-items: center;
     }
+    
+  #typing-text::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+    
     .mosaic-loader {
       display: flex;
       flex-wrap: wrap;
@@ -343,8 +353,8 @@
         </div>
 
         <!-- Greeting -->
-        <h1 class="text-4xl font-bold text-gray-800 mb-2">
-        <span class="gradient-text" id="typing-text"></span>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">  
+        <span class="gradient-text" id="typing-text"></span>  
         </h1>
         
         <!-- Introduction Text -->
