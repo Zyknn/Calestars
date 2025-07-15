@@ -576,8 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
     "Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💌",
-    "Bot saat ini hanya aktif di grup. Mau chat pribadi? Bisa dengan akun premium ✨",
-    "Username akun yang kosong atau aneh tidak bisa masuk grup. Biar kami bisa mengenalmu lebih baik 💖"
+    "Bot terkadang hanya aktif di grup. Untuk menghindari nomor terblokir ✨"
   ];
 
   let index = 0;
