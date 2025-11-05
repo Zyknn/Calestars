@@ -15,23 +15,11 @@
 // Daftar grup WhatsApp yang akan ditampilkan di UI
 const groups = [
   {
-    title: "Calestia’s Number 💖",
-    header: "Reach Your Favorite Bot",
-    description:
-      "The easiest way to reach your favorite bot! Start chatting and let the magic begin.",
-    image: "https://nauval.cloud/download/soo.jpg",
-    url: "https://wa.me/6282133532380",
-    icon: "fa-phone",
-    color: "bg-pink-500",
-    buttonText: "Chat With Bot",
-    buttonIcon: "fa-comment-dots"
-  },
-  {
     title: "Official Group 🌟",
     header: "Join Our Official Community",
     description:
       "Join the official group where all Calestars unite. Stay connected and be part of something amazing!",
-    image: "https://nauval.cloud/download/cales.jpg",
+    image: "https://raw.githubusercontent.com/Zyknn/CloudImage/refs/heads/main/calestars/groupicon.jpg",
     url: "https://chat.whatsapp.com/HDockZJ48S82HUhsxu85kH",
     icon: "fa-users",
     color: "bg-purple-500",
@@ -44,7 +32,7 @@ const groups = [
     description:
       "Stay updated with all the latest news and announcements in our official channel. No distractions, just the essentials!",
     image: "https://nauval.cloud/download/wa.jpg",
-    url: "https://whatsapp.com/channel/0029VapSsRCGJP8CHvDLT11f",
+    url: "https://raw.githubusercontent.com/Zyknn/CloudImage/refs/heads/main/calestars/saluran.jpg",
     icon: "fa-bullhorn",
     color: "bg-blue-500",
     buttonText: "Follow to Channel",
