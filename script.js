@@ -220,32 +220,43 @@ document.addEventListener("DOMContentLoaded", () => {
     "Ada ide atau permintaan? Tag admin di grup ya 🌸"
   ];
 
-  let index = 0;
   const container = document.getElementById("info-container");
-  const wrapperWidth = document.querySelector(".w-full").offsetWidth;
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!?@#%&";
 
-  function showMessage(text) {
-    container.innerText = text;
-    container.style.transition = "none";
-    container.style.left = `${wrapperWidth}px`;
-    container.style.opacity = 1;
+  let messageIndex = 0;
+  let interval;
 
-    void container.offsetWidth;
+  function revealText(text) {
+    let iteration = 0;
+    clearInterval(interval);
 
-    const textWidth = container.offsetWidth;
-    const duration = (textWidth + wrapperWidth) / 90 * 1000;
+    interval = setInterval(() => {
+      container.innerText = text
+        .split("")
+        .map((char, index) => {
+          if (index < iteration) return text[index];
+          return letters[Math.floor(Math.random() * letters.length)];
+        })
+        .join("");
 
-    container.style.transition = `left ${duration}ms linear`;
-    container.style.left = `-${textWidth}px`;
+      if (iteration >= text.length) {
+        clearInterval(interval);
+        setTimeout(nextMessage, 2500); // tunggu 2.5 detik sebelum lanjut teks berikutnya
+      }
 
-    setTimeout(() => {
-      index = (index + 1) % messages.length;
-      showMessage(messages[index]);
-    }, duration);
+      iteration += 1 / 2; // makin kecil makin lambat efeknya
+    }, 30);
   }
 
-  showMessage(messages[index]);
+  function nextMessage() {
+    messageIndex = (messageIndex + 1) % messages.length;
+    revealText(messages[messageIndex]);
+  }
+
+  // mulai pertama
+  revealText(messages[messageIndex]);
 });
+
 
 // Music Player
 const audio = new Audio("Hearts2Hearts.mp3");
