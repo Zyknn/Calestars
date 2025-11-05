@@ -215,8 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
-    "Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💌",
-    "Bot terkadang hanya aktif di grup. Untuk menghindari nomor terblokir ✨"
+    "Calestia hanya aktif di grup, biar nomornya tetap aman 💫",
+    "Tanpa limit, tanpa premium — semuanya gratis untukmu ♡",
+    "Ada ide atau permintaan? Tag admin di grup ya 🌸"
   ];
 
   let index = 0;
