@@ -316,62 +316,63 @@
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6">
     
-    <!-- Profile Header -->
-    <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 card-hover">
-      <div class="flex flex-col items-center text-center">
+   <!-- Profile Header -->
+<div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 card-hover">
+  <div class="flex flex-col items-center text-center">
 
-        <!-- Profile Image with Loader -->
-        <div class="relative mb-6 w-32 h-32">
-          <div class="loader-ring animate-spin-loader"></div>
-          <img src="https://nauval.cloud/download/jikuan.jpg" alt="Profile"
-            class="relative z-10 w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl" />
+    <!-- Profile Image with Loader -->
+    <div class="relative mb-6 w-32 h-32">
+      <div class="loader-ring animate-spin-loader"></div>
+      <img src="https://nauval.cloud/download/jikuan.jpg" alt="Profile"
+        class="relative z-10 w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl" />
+    </div>
+
+    <!-- Greeting -->
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">  
+      <span class="gradient-text" id="typing-text"></span>  
+    </h1>
+    
+    <!-- Introduction Text -->
+    <p class="text-gray-600 max-w-2xl">
+      Welcome to Calestia — a little world made just for you.
+      <br><br>
+      Whether you’re here to connect, explore, or simply feel closer to the magic,
+      every link below is a step into our universe.
+      <br>
+      Join our official group, stay in the loop through our channel, unlock special perks,
+      or just say hi to the bot that brought us all together.
+      <br><br>
+      You’re not just a user — you’re part of something stardust-sweet. ✨
+    </p>
+
+    <!-- Highlights -->
+    <div class="mt-6 w-full max-w-sm sm:max-w-md flex flex-col items-center space-y-3">
+      
+      <!-- Baris atas -->
+      <div class="flex justify-center flex-wrap gap-3 w-full">
+        <div class="px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium text-center min-w-[120px]">
+          <i class="fas fa-users mr-1"></i>
+          <span id="user-count" class="inline-block min-w-[40px] text-right transition-all duration-300">0</span>
         </div>
+        <div class="px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-medium text-center min-w-[160px]">
+          <i class="fas fa-heart mr-1"></i>
+          <span id="romantic-phrase" class="inline-block transition-all duration-300">Always With You</span>
+        </div>
+      </div>
 
-        <!-- Greeting -->
-        <h1 class="text-4xl font-bold text-gray-800 mb-2">  
-        <span class="gradient-text" id="typing-text"></span>  
-        </h1>
-        
-        <!-- Introduction Text -->
-        <p class="text-gray-600 max-w-2xl">
-          Welcome to Calestia — a little world made just for you.
-          <br><br>
-          Whether you’re here to connect, explore, or simply feel closer to the magic,
-          every link below is a step into our universe.
-          <br>
-          Join our official group, stay in the loop through our channel, unlock special perks,
-          or just say hi to the bot that brought us all together.
-          <br><br>
-          You’re not just a user — you’re part of something stardust-sweet. ✨
-        </p>
-
-<!-- Highlights -->
-<div class="mt-6 space-y-3">
-  <!-- Baris atas -->
-  <div class="flex space-x-3">
-    <div class="px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium">
-      <i class="fas fa-users mr-1"></i>
-      <span id="user-count" class="inline-block min-w-[40px] text-right transition-all duration-300">0</span>
-    </div>
-    <div class="px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-medium">
-      <i class="fas fa-heart mr-1"></i>
-      <span id="romantic-phrase" class="inline-block min-w-[120px] text-center transition-all duration-300">Always With You</span>
-    </div>
-  </div>
-
-  <!-- Baris bawah: Info Banner -->
-  <div class="w-full">
-    <div class="w-full bg-pink-50 border border-pink-100 rounded-full h-[30px] flex items-center justify-center overflow-hidden">
-      <div id="info-container" class="text-pink-700 text-sm font-medium whitespace-nowrap text-center px-4">
-        <!-- akan diisi via JS -->
+      <!-- Baris bawah: Info Banner -->
+      <div class="w-full">
+        <div class="w-full bg-pink-50 border border-pink-100 rounded-full h-[30px] flex items-center justify-center overflow-hidden">
+          <div id="info-container" class="text-pink-700 text-sm font-medium whitespace-nowrap text-center px-4">
+            <!-- akan diisi via JS -->
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 
-        
-      </div>
-    </div>
 
     <!-- Music Player Section -->
 <section class="mt-12">
