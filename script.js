@@ -31,8 +31,8 @@ const groups = [
     header: "Stay Updated with Us",
     description:
       "Stay updated with all the latest news and announcements in our official channel. No distractions, just the essentials!",
-    image: "https://nauval.cloud/download/wa.jpg",
-    url: "https://raw.githubusercontent.com/Zyknn/CloudImage/refs/heads/main/calestars/saluran.jpg",
+    image: "https://raw.githubusercontent.com/Zyknn/CloudImage/refs/heads/main/calestars/saluran.jpg",
+    url: "https://whatsapp.com/channel/0029VbAZ5eJBadmUA9fTe63I",
     icon: "fa-bullhorn",
     color: "bg-blue-500",
     buttonText: "Follow to Channel",
