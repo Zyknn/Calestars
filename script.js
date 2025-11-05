@@ -213,6 +213,39 @@ document.addEventListener("DOMContentLoaded", () => {
   cyclePhrases("romantic-phrase", phrases, 5000);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const messages = [
+    "Nomor bot utama kadang diblokir. Jangan ketinggalan info, yuk join grup resmi 💌",
+    "Bot terkadang hanya aktif di grup. Untuk menghindari nomor terblokir ✨"
+  ];
+
+  let index = 0;
+  const container = document.getElementById("info-container");
+  const wrapperWidth = document.querySelector(".w-full").offsetWidth;
+
+  function showMessage(text) {
+    container.innerText = text;
+    container.style.transition = "none";
+    container.style.left = `${wrapperWidth}px`;
+    container.style.opacity = 1;
+
+    void container.offsetWidth;
+
+    const textWidth = container.offsetWidth;
+    const duration = (textWidth + wrapperWidth) / 90 * 1000;
+
+    container.style.transition = `left ${duration}ms linear`;
+    container.style.left = `-${textWidth}px`;
+
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      showMessage(messages[index]);
+    }, duration);
+  }
+
+  showMessage(messages[index]);
+});
+
 // Music Player
 const audio = new Audio("Hearts2Hearts.mp3");
 const playBtn = document.getElementById("play-pause-btn");
