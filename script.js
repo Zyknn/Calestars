@@ -222,30 +222,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const container = document.getElementById("info-container");
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!?@#%&";
+  container.style.textAlign = "center";
+  container.style.display = "block";
 
   let messageIndex = 0;
-  let interval;
 
   function revealText(text) {
-    let iteration = 0;
-    clearInterval(interval);
+    let progress = 0;
+    let revealed = "";
+    let duration = 40; // kecepatan animasi
+    const totalFrames = 40; // makin besar makin lama efek acak
 
-    interval = setInterval(() => {
-      container.innerText = text
+    const interval = setInterval(() => {
+      progress++;
+      revealed = text
         .split("")
-        .map((char, index) => {
-          if (index < iteration) return text[index];
-          return letters[Math.floor(Math.random() * letters.length)];
+        .map((char) => {
+          if (char === " ") return " ";
+          // sebagian huruf sudah tetap, sisanya random
+          return Math.random() < progress / totalFrames
+            ? char
+            : letters[Math.floor(Math.random() * letters.length)];
         })
         .join("");
 
-      if (iteration >= text.length) {
-        clearInterval(interval);
-        setTimeout(nextMessage, 2500); // tunggu 2.5 detik sebelum lanjut teks berikutnya
-      }
+      container.innerText = revealed;
 
-      iteration += 1 / 2; // makin kecil makin lambat efeknya
-    }, 30);
+      if (progress >= totalFrames) {
+        clearInterval(interval);
+        setTimeout(nextMessage, 2500); // jeda sebelum pesan berikutnya
+      }
+    }, duration);
   }
 
   function nextMessage() {
@@ -253,9 +260,9 @@ document.addEventListener("DOMContentLoaded", () => {
     revealText(messages[messageIndex]);
   }
 
-  // mulai pertama
   revealText(messages[messageIndex]);
 });
+
 
 
 // Music Player
