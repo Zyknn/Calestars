@@ -294,15 +294,22 @@
 
 <body class="min-h-screen pt-16 pb-10 relative overflow-x-hidden">
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-sm py-3 px-6 z-50 border-b border-gray-200">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      
-      <!-- Logo -->
-      <div class="flex items-center space-x-2">
-        <span class="text-xl font-bold gradient-text">Calestia</span>
-      </div>
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-sm py-3 px-6 z-50 border-b border-gray-200">
+  <div class="max-w-6xl mx-auto flex justify-between items-center">
+    
+    <!-- Logo + Info Banner -->
+    <div class="flex items-center space-x-4 overflow-hidden">
+      <span class="text-xl font-bold gradient-text whitespace-nowrap">Calestia</span>
 
+      <!-- Info Banner -->
+      <div class="relative w-[180px] sm:w-[250px] h-[28px] overflow-hidden bg-pink-50 border border-pink-100 rounded-full">
+        <div id="info-container" class="absolute left-0 whitespace-nowrap text-pink-700 text-sm font-medium animate-marquee px-2">
+          <!-- akan diisi via JS -->
+        </div>
+      </div>
+    </div>
+    
       <!-- Right Menu -->
       <div class="flex items-center space-x-4">
         <!-- (isi kanan navbar kalau ada) -->
@@ -315,11 +322,6 @@
 
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6">
-
-     <!-- Info Banner -->
-<div class="fixed top-[64px] left-0 right-0 w-full bg-pink-50 text-pink-700 text-sm sm:text-base font-medium py-2 px-4 overflow-hidden z-[40] h-[36px] border-b border-pink-100">
-  <div id="info-container" class="absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-center"></div>
-</div>
     
     <!-- Profile Header -->
     <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 card-hover">
