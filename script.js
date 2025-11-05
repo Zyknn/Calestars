@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Music Player
-const audio = new Audio("Hearts2Hearts.mp3");
+const audio = new Audio("Hearts2Hearts (하츠투하츠) - FOCUS [BASS BOOSTED].mp3");
 const playBtn = document.getElementById("play-pause-btn");
 const playIcon = document.getElementById("play-icon");
 const pauseIcon = document.getElementById("pause-icon");
