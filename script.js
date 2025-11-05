@@ -215,55 +215,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
-    "Calestia hanya aktif di grup, biar nomornya tetap aman 💫",
-    "Tanpa limit, tanpa premium — semuanya gratis untukmu ♡",
-    "Ada ide atau permintaan? Tag admin di grup ya 🌸"
+    "Hanya aktif di grup, biar bot tidak terblokir 💫",
+    "Tanpa limit, tanpa premium — semuanya gratis ♡",
+    "Ada ide atau req fitur? Tag admin di grup ya 🌸"
   ];
 
-  const container = document.getElementById("info-container");
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!?@#%&";
+   const container = document.getElementById("info-container");
   container.style.textAlign = "center";
   container.style.display = "block";
+  container.style.transition = "opacity 0.6s ease";
+  container.style.opacity = 1;
 
   let messageIndex = 0;
 
-  function revealText(text) {
-    let progress = 0;
-    let revealed = "";
-    let duration = 40; // kecepatan animasi
-    const totalFrames = 40; // makin besar makin lama efek acak
-
-    const interval = setInterval(() => {
-      progress++;
-      revealed = text
-        .split("")
-        .map((char) => {
-          if (char === " ") return " ";
-          // sebagian huruf sudah tetap, sisanya random
-          return Math.random() < progress / totalFrames
-            ? char
-            : letters[Math.floor(Math.random() * letters.length)];
-        })
-        .join("");
-
-      container.innerText = revealed;
-
-      if (progress >= totalFrames) {
-        clearInterval(interval);
-        setTimeout(nextMessage, 2500); // jeda sebelum pesan berikutnya
-      }
-    }, duration);
+  function showMessage() {
+    container.style.opacity = 0;
+    setTimeout(() => {
+      container.innerText = messages[messageIndex];
+      container.style.opacity = 1;
+      messageIndex = (messageIndex + 1) % messages.length;
+    }, 600); // waktu fade out sebelum ganti teks
   }
 
-  function nextMessage() {
-    messageIndex = (messageIndex + 1) % messages.length;
-    revealText(messages[messageIndex]);
-  }
+  container.innerText = messages[messageIndex];
+  messageIndex++;
 
-  revealText(messages[messageIndex]);
+  setInterval(showMessage, 3000); // ganti tiap 3 detik
 });
-
-
 
 // Music Player
 const audio = new Audio("Hearts2Hearts.mp3");
