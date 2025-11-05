@@ -301,15 +301,6 @@
     <!-- Logo -->
     <span class="text-lg sm:text-xl font-bold gradient-text whitespace-nowrap z-20 relative">Calestia</span>
 
-    <!-- Info Banner (absolute center, responsif & aman di HP) -->
-    <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[80%] sm:w-[60%] md:w-[50%] pointer-events-none px-6 sm:px-0">
-      <div class="h-[26px] sm:h-[30px] bg-pink-50 border border-pink-100 rounded-full flex items-center justify-center overflow-hidden shadow-sm">
-        <div id="info-container" class="text-pink-700 text-xs sm:text-sm font-medium whitespace-nowrap text-center px-3">
-          <!-- akan diisi via JS -->
-        </div>
-      </div>
-    </div
-
     <!-- Right Menu -->
     <div class="flex items-center space-x-4 z-10">
       <!-- isi kanan navbar kalau ada -->
@@ -354,16 +345,30 @@
           You’re not just a user — you’re part of something stardust-sweet. ✨
         </p>
 
-        <!-- Highlights -->
-        <div class="mt-6 flex space-x-3">
-       <div class="px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium">
-        <i class="fas fa-users mr-1"> </i> <span id="user-count" class="inline-block min-w-[40px] text-right transition-all duration-300">0</span>
-        </div>
-       <div class="px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-medium">
-        <i class="fas fa-heart mr-1"></i> 
-        <span id="romantic-phrase" class="inline-block min-w-[120px] text-center transition-all duration-300">Always With You</span>
-        </div>
-        </div>
+<!-- Highlights -->
+<div class="mt-6 space-y-3">
+  <!-- Baris atas -->
+  <div class="flex space-x-3">
+    <div class="px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium">
+      <i class="fas fa-users mr-1"></i>
+      <span id="user-count" class="inline-block min-w-[40px] text-right transition-all duration-300">0</span>
+    </div>
+    <div class="px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-medium">
+      <i class="fas fa-heart mr-1"></i>
+      <span id="romantic-phrase" class="inline-block min-w-[120px] text-center transition-all duration-300">Always With You</span>
+    </div>
+  </div>
+
+  <!-- Baris bawah: Info Banner -->
+  <div class="w-full">
+    <div class="w-full bg-pink-50 border border-pink-100 rounded-full h-[30px] flex items-center justify-center overflow-hidden">
+      <div id="info-container" class="text-pink-700 text-sm font-medium whitespace-nowrap text-center px-4">
+        <!-- akan diisi via JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
         
       </div>
     </div>
