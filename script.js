@@ -203,9 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
-    "Hanya aktif di grup, biar bot tidak terblokir 💫",
-    "Tanpa limit, tanpa premium — semuanya gratis ♡",
-    "Ada ide atau req fitur? Tag admin di grup ya 🌸"
+    "Bot Non-aktif 💫",
+    "See u next time ♡"
   ];
 
    const container = document.getElementById("info-container");
