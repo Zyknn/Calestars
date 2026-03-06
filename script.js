@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
-    "Bot Actie 💫",
+    "Bot Active 💫",
     "Let's Join Community ♡"
   ];
 
