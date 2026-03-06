@@ -203,8 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const messages = [
-    "Bot Non-aktif 💫",
-    "See u next time ♡"
+    "Bot Actie 💫",
+    "Let's Join Community ♡"
   ];
 
    const container = document.getElementById("info-container");
