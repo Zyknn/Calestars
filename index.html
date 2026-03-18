@@ -393,16 +393,16 @@
 
 <!-- Welcome Popup Modal -->
 <div id="welcome-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
-  <div class="relative max-w-md mx-4">
-    <!-- Close Button -->
-    <button id="close-modal" class="absolute -top-4 -right-4 bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg transition-colors z-10">
-      <i class="fas fa-times"></i>
-    </button>
-    
+  <!-- Close Button (always visible even if content is tall) -->
+  <button id="close-modal" class="absolute top-6 right-6 bg-red-500 hover:bg-red-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-colors z-50" aria-label="Close welcome modal">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <div class="relative max-w-md mx-4 max-h-[85vh] overflow-auto">
     <!-- Popup Image -->
     <img src="https://raw.githubusercontent.com/Zyknn/CloudImage/refs/heads/main/calestars/promo.png" 
          alt="Welcome to Calestia" 
-         class="rounded-xl shadow-2xl max-w-full h-auto">
+         class="rounded-xl shadow-2xl max-w-full max-h-[80vh] w-auto h-auto">
   </div>
 </div>
 
