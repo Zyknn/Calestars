@@ -289,10 +289,122 @@
     color: #8b5cf6;
     font-weight: bold;
   }
+
+  /* Welcome Modal Styles */
+  #welcome-modal {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  #welcome-modal.hidden {
+    animation: fadeOut 0.3s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+
+  #welcome-modal img {
+    animation: slideIn 0.6s ease-out 0.2s both;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #close-modal {
+    animation: bounceIn 0.5s ease-out 0.8s both;
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Shop Section Dark Mode Support */
+  .dark-mode .card-hover {
+    background-color: #2a2a40 !important;
+    border-color: #3a3a5a !important;
+  }
+
+  .dark-mode .border-gray-100,
+  .dark-mode .border-gray-200 {
+    border-color: #3a3a5a !important;
+  }
+
+  .dark-mode .bg-blue-50 { background-color: #1e1e2f !important; }
+  .dark-mode .bg-green-50 { background-color: #1e2e1f !important; }
+  .dark-mode .bg-purple-50 { background-color: #2e1e2e !important; }
+  .dark-mode .bg-pink-50 { background-color: #2e1e1e !important; }
+  .dark-mode .bg-red-50 { background-color: #2e1e1e !important; }
+  .dark-mode .bg-indigo-50 { background-color: #1e1e2e !important; }
+  .dark-mode .bg-orange-50 { background-color: #2e1e1e !important; }
+  .dark-mode .bg-teal-50 { background-color: #1e2e2e !important; }
+
+  .dark-mode .border-blue-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-green-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-purple-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-pink-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-red-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-indigo-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-orange-100 { border-color: #3a3a5a !important; }
+  .dark-mode .border-teal-100 { border-color: #3a3a5a !important; }
   </style>
 </head>
 
 <body class="min-h-screen pt-16 pb-10 relative overflow-x-hidden">
+
+<!-- Welcome Popup Modal -->
+<div id="welcome-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-md mx-4">
+    <!-- Close Button -->
+    <button id="close-modal" class="absolute -top-4 -right-4 bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg transition-colors z-10">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <!-- Popup Image -->
+    <img src="https://raw.githubusercontent.com/Zyknn/CloudImage/refs/heads/main/calestars/profilecard.jpg" 
+         alt="Welcome to Calestia" 
+         class="rounded-xl shadow-2xl max-w-full h-auto">
+  </div>
+</div>
 
 <!-- Navbar -->
 <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-sm z-50 border-b border-gray-200">
@@ -303,7 +415,9 @@
 
     <!-- Right Menu -->
     <div class="flex items-center space-x-4 z-10">
-      <!-- isi kanan navbar kalau ada -->
+      <button id="show-welcome-btn" class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 transition-colors" title="Show Welcome Message">
+        <i class="fas fa-info-circle"></i>
+      </button>
     </div>
 
   </div>
@@ -392,11 +506,22 @@
         <p id="artist-name" class="text-sm truncate text-gray-600" data-dark-text="text-gray-300">Hearts2Hearts</p>
       </div>
 
-      <!-- Play/Pause Button -->
-      <button id="play-pause-btn" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none">
-        <i class="fas fa-play" id="play-icon"></i>
-        <i class="fas fa-pause hidden" id="pause-icon"></i>
-      </button>
+      <!-- Controls -->
+      <div class="flex items-center space-x-3">
+        <button id="prev-btn" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none">
+          <i class="fas fa-step-backward text-lg"></i>
+        </button>
+        <button id="play-pause-btn" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none">
+          <i class="fas fa-play text-xl" id="play-icon"></i>
+          <i class="fas fa-pause text-xl hidden" id="pause-icon"></i>
+        </button>
+        <button id="next-btn" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none">
+          <i class="fas fa-step-forward text-lg"></i>
+        </button>
+        <button id="playlist-toggle" class="text-gray-700 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-400 focus:outline-none ml-2">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+      </div>
     </div>
 
     <!-- Progress Bar -->
@@ -414,6 +539,16 @@
       <span id="current-time">0:00</span>
       <span id="total-duration">0:00</span>
     </div>
+
+    <!-- Playlist (hidden by default) -->
+    <div id="playlist-container" class="mt-4 hidden">
+      <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
+        <h4 class="text-sm font-medium text-gray-800 dark:text-white mb-3">Playlist (Klick to Play)</h4>
+        <div id="playlist" class="max-h-40 overflow-y-auto space-y-1">
+          <!-- Playlist items will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -429,6 +564,204 @@
       <div id="groups" class="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
         <!-- Dynamic content inserted by JavaScript -->
       </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+        <i class="fas fa-shopping-cart mr-3 text-green-500"></i>
+        <span>Premium Shop</span>
+      </h2>
+
+      <!-- Benefits Section -->
+      <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 card-hover mb-8">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-crown mr-2 text-yellow-500"></i>
+          Premium Benefits
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex items-center text-gray-700">
+              <i class="fas fa-check-circle text-green-500 mr-3"></i>
+              <span>Akses Semua Fitur Premium</span>
+            </div>
+            <div class="flex items-center text-gray-700">
+              <i class="fas fa-check-circle text-green-500 mr-3"></i>
+              <span>No Cooldown – Gunakan fitur tanpa batasan waktu!</span>
+            </div>
+            <div class="flex items-center text-gray-700">
+              <i class="fas fa-check-circle text-green-500 mr-3"></i>
+              <span>Tidak Wajib Join Grup Official</span>
+            </div>
+          </div>
+          <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
+            <h4 class="font-semibold text-gray-800 mb-2">✨ Nikmati berbagai keunggulan eksklusif</h4>
+            <p class="text-sm text-gray-600">Rasakan pengalaman premium yang tak tertandingi!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Preview -->
+      <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 card-hover mb-8">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-gift mr-2 text-purple-500"></i>
+          Preview Fitur Premium
+        </h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+            <i class="fas fa-brain text-blue-500 text-2xl mb-2"></i>
+            <h4 class="font-semibold text-gray-800">Smart AI Personality</h4>
+            <p class="text-sm text-gray-600">AI auto-responsif yang bisa diatur sifat & karakternya sesuai mood kamu!</p>
+          </div>
+          <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+            <i class="fas fa-images text-green-500 text-2xl mb-2"></i>
+            <h4 class="font-semibold text-gray-800">Unlimited Media Send</h4>
+            <p class="text-sm text-gray-600">Download banyak gambar dari Instagram dan TikTok.</p>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
+            <i class="fas fa-film text-purple-500 text-2xl mb-2"></i>
+            <h4 class="font-semibold text-gray-800">Slide to Video</h4>
+            <p class="text-sm text-gray-600">Ubah media gambar (TikTok Slide) jadi video secara otomatis.</p>
+          </div>
+          <div class="bg-pink-50 p-4 rounded-lg border border-pink-100">
+            <i class="fas fa-th-large text-pink-500 text-2xl mb-2"></i>
+            <h4 class="font-semibold text-gray-800">Image Kolase</h4>
+            <p class="text-sm text-gray-600">Gabungkan beberapa gambar dari Instagram jadi satu kolase keren.</p>
+          </div>
+          <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+            <i class="fas fa-music text-red-500 text-2xl mb-2"></i>
+            <h4 class="font-semibold text-gray-800">YTMP3 Downloader</h4>
+            <p class="text-sm text-gray-600">Download audio dari YouTube dengan ukuran besar? Bisa!</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+            <i class="fas fa-video text-indigo-500 text-2xl mb-2"></i>
+            <h4 class="font-semibold text-gray-800">YTMP4 Downloader</h4>
+            <p class="text-sm text-gray-600">Download video YouTube dengan kualitas tinggi.</p>
+          </div>
+        </div>
+        <div class="mt-4 text-center">
+          <p class="text-gray-600">📑 <strong>Dan masih banyak fitur premium lainnya!</strong></p>
+        </div>
+      </div>
+
+      <!-- Packages Section -->
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <!-- Premium Packages -->
+        <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 card-hover">
+          <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-star mr-2 text-yellow-500"></i>
+            Premium Packages
+          </h3>
+          <div class="space-y-4">
+            <div class="border border-gray-200 rounded-lg p-4 hover:border-purple-300 transition-colors">
+              <div class="flex justify-between items-center mb-2">
+                <h4 class="font-semibold text-gray-800">5K / 15 Hari</h4>
+                <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">Premium Access</span>
+              </div>
+              <a href="https://wa.me/628979440862?text=Halo%20min,%20saya%20mau%20order%20Premium%205K%20(15%20hari)"
+                 target="_blank"
+                 class="inline-flex items-center justify-center w-full bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg transition-colors">
+                <i class="fab fa-whatsapp mr-2"></i>
+                Order via WhatsApp
+              </a>
+            </div>
+            <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+              <div class="flex justify-between items-center mb-2">
+                <h4 class="font-semibold text-gray-800">6K / 30 Hari</h4>
+                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">Premium Access</span>
+              </div>
+              <a href="https://wa.me/628979440862?text=Halo%20min,%20saya%20mau%20order%20Premium%206K%20(30%20hari)"
+                 target="_blank"
+                 class="inline-flex items-center justify-center w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors">
+                <i class="fab fa-whatsapp mr-2"></i>
+                Order via WhatsApp
+              </a>
+            </div>
+            <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 transition-colors">
+              <div class="flex justify-between items-center mb-2">
+                <h4 class="font-semibold text-gray-800">10K / 30 Hari</h4>
+                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">Premium Access</span>
+              </div>
+              <a href="https://wa.me/628979440862?text=Halo%20min,%20saya%20mau%20order%20Premium%2010K%20(30%20hari)"
+                 target="_blank"
+                 class="inline-flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition-colors">
+                <i class="fab fa-whatsapp mr-2"></i>
+                Order via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bot Rental -->
+        <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 card-hover">
+          <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-robot mr-2 text-orange-500"></i>
+            Sewa Bot
+          </h3>
+          <div class="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors">
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-semibold text-gray-800">15K / 30 Hari</h4>
+              <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-medium">Bot Rental</span>
+            </div>
+            <div class="text-sm text-gray-600 mb-3 space-y-1">
+              <div class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Invite bot ke grup</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-gift text-purple-500 mr-2"></i>
+                <span>Bonus 20 hari premium untuk penyewa</span>
+              </div>
+            </div>
+            <a href="https://wa.me/628979440862?text=Halo%20min,%20saya%20mau%20sewa%20bot%2015K%20(30%20hari)"
+               target="_blank"
+               class="inline-flex items-center justify-center w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg transition-colors">
+              <i class="fab fa-whatsapp mr-2"></i>
+              Order via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Options -->
+      <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 card-hover">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i class="fas fa-credit-card mr-2 text-teal-500"></i>
+          Payment Options
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-teal-300 transition-colors">
+            <i class="fas fa-wallet text-teal-500 text-2xl mb-2"></i>
+            <p class="font-medium text-gray-800">Dana</p>
+          </div>
+          <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-teal-300 transition-colors">
+            <i class="fas fa-shopping-bag text-orange-500 text-2xl mb-2"></i>
+            <p class="font-medium text-gray-800">Shopeepay</p>
+          </div>
+          <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-teal-300 transition-colors">
+            <i class="fas fa-university text-blue-500 text-2xl mb-2"></i>
+            <p class="font-medium text-gray-800">Seabank</p>
+          </div>
+          <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-teal-300 transition-colors">
+            <i class="fas fa-mobile-alt text-green-500 text-2xl mb-2"></i>
+            <p class="font-medium text-gray-800">Gopay</p>
+          </div>
+          <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-teal-300 transition-colors">
+            <i class="fas fa-qrcode text-purple-500 text-2xl mb-2"></i>
+            <p class="font-medium text-gray-800">QRIS</p>
+          </div>
+        </div>
+        <div class="mt-6 text-center">
+          <p class="text-gray-600 mb-2">Order sekarang! chat langsung:</p>
+          <a href="https://wa.me/628979440862"
+             target="_blank"
+             class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg transition-colors text-lg font-medium">
+            <i class="fab fa-whatsapp mr-2"></i>
+            0897-9440-862 (Zykuan)
+          </a>
+        </div>
+      </div>
+    </section>
       
 <!-- Floating Bubbles Background -->
 <div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
